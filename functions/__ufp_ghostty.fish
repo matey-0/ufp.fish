@@ -1,45 +1,27 @@
-function __ensure_deps -a os
-    set -l needs_install 0
-    
-    if not command -v mold >/dev/null
-        set needs_install 1
-    end
-
-    if test $needs_install -eq 1
-        set_color yellow; echo "Dependencies missing. Installing for $os..."; set_color normal
-        switch $os
-            case arch CachyOS
-                sudo pacman -Syu --needed --noconfirm gtk4 gtk4-layer-shell libadwaita gettext mold
-            case debian ubuntu kali
-                sudo apt update && sudo apt install -y libgtk-4-dev libgtk4-layer-shell-dev libadwaita-1-dev gettext libxml2-utils mold
-            case fedora
-                sudo dnf install -y gtk4-devel gtk4-layer-shell-devel libadwaita-devel gettext mold
-            case gentoo
-                sudo emerge -av libadwaita gtk blueprint-compiler gettext sys-devel/mold
-            case suse
-                sudo zypper install -y gtk4-devel libadwaita-devel pkgconf ncurses-devel gettext mold
-            case alpine
-                sudo apk add gtk4.0-dev libadwaita-dev pkgconf ncurses gettext mold
-            case '*'
-                set_color red; echo "Use a supported distro (Fedora, Arch, CachyOS, Debian, Kali, Ubuntu, Gentoo, SUSE, or Alpine)"; set_color normal
-                return 1
-        end
-    else
-        set_color blue; echo "Dependencies verified."; set_color normal
-    end
-end
-
 function __ufp_ghostty
     set -l os_env (__get_os_info)
     if test "$os_env" = "macos"
         set_color red; echo "This is for Linux, use Brew on macOS"; set_color normal
         return 1
     end
-
-    __ensure_deps $os_env
-    if test $status -ne 0
-        return 1
-    end
+    
+    switch $os_env
+        case arch CachyOS
+            sudo pacman -Syu --needed --noconfirm gtk4 libadwaita gettext mold
+        case debian ubuntu kali
+            sudo apt update && sudo apt install -y libgtk-4-dev libadwaita-1-dev gettext libxml2-utils mold
+        case fedora
+            sudo dnf install -y gtk4-devel libadwaita-devel gettext mold
+        case gentoo
+            sudo emerge -av libadwaita gtk blueprint-compiler gettext sys-devel/mold
+        case suse
+            sudo zypper install -y gtk4-devel libadwaita-devel pkgconf ncurses-devel gettext mold
+        case alpine
+            sudo apk add gtk4.0-dev libadwaita-dev pkgconf ncurses gettext mold
+        case '*'
+            set_color red; echo "Use a supported distro (Fedora, Arch, CachyOS, Debian, Kali, Ubuntu, Gentoo, SUSE, or Alpine)"; set_color normal
+            return 1
+        end
 
     set -l threads (nproc)
     set -l arch (uname -m)
@@ -81,7 +63,7 @@ function __ufp_ghostty
     cd "/mnt/ramdisk/ghostty-$ghostty_version/"
     
     set_color purple; echo "Compiling Ghostty..."; set_color normal
-    mold -run /mnt/ramdisk/zig-$arch-linux-$zig_ver/zig build -p $HOME/.local \
+    mold -run /mnt/ramdisk/zig-$arch-linux-$zig_version/zig build -p $HOME/.local \
         -Doptimize=ReleaseFast \
         -Dcpu=native \
         -fno-sys=gtk4-layer-shell \
