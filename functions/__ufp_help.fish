@@ -13,7 +13,7 @@ function __ufp_help
     echo "  ufp -b         Undo the last transaction in history (Only supported on Fedora)"
     echo "  ufp -u         Perform a system upgrade"
     echo "  ufp -m         Update firmware on fwupdmgr supported systems"
-    echo "  ufp -g         Compile and upgrade Ghostty"
+    echo "  ufp -g         Compile desired version of Ghostty"
     echo ""
     echo "Supports: Fedora, Arch, CachyOS, Debian, Kali, Ubuntu, Gentoo, SUSE, Alpine, & MacOS"
     echo "Current Operating System: "(string upper (string sub -l 1 -- $os_env))(string sub -s 2 -- $os_env)""
