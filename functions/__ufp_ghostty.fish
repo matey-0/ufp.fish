@@ -4,7 +4,7 @@ function __ufp_ghostty
         set_color red; echo "This is for Linux, use Brew on macOS"; set_color normal
         return 1
     end
-    
+
     switch $os_env
         case arch CachyOS
             sudo pacman -Syu --needed --noconfirm gtk4 libadwaita gettext mold
@@ -19,60 +19,73 @@ function __ufp_ghostty
         case alpine
             sudo apk add gtk4.0-dev libadwaita-dev pkgconf ncurses gettext mold
         case '*'
-            set_color red; echo "Use a supported distro (Fedora, Arch, CachyOS, Debian, Kali, Ubuntu, Gentoo, SUSE, or Alpine)"; set_color normal
+            set_color red; echo "Unsupported distro"; set_color normal
             return 1
-        end
+    end
 
     set -l threads (nproc)
     set -l arch (uname -m)
-    
+
     set_color purple
     read -P "Enter desired Ghostty version: " ghostty_version
-    read -P "Enter required Zig version for desired Ghostty version: " zig_version
+    read -P "Enter required Zig version for your desired Ghostty version: " zig_version
     set_color normal
 
     if test -z "$ghostty_version"; or test -z "$zig_version"
-        set_color red; echo "Version cannot be empty."; set_color normal
+        set_color red; echo "Version cannot be empty"; set_color normal
         return 1
+    end
+
+    set -l total_mem (free -g | awk '/^Mem:/ {print $2}')
+    if test $total_mem -lt 12
+        set_color yellow; echo "Only $total_mem"GB" RAM detected. Reducing ramdisk to 4GB."; set_color normal
+        set ram_size 4g
+    else
+        set ram_size 10g
     end
 
     if not test -d /mnt/ramdisk
         sudo mkdir -p /mnt/ramdisk
     end
     sudo umount /mnt/ramdisk 2>/dev/null
-    sudo mount -t tmpfs -o size=10g tmpfs /mnt/ramdisk
-    cd /mnt/ramdisk/
+    sudo mount -t tmpfs -o size=$ram_size tmpfs /mnt/ramdisk
+    
+    set -l build_root /mnt/ramdisk
+    pushd $build_root
 
     set_color purple; echo "Fetching Zig $zig_version..."; set_color normal
     set -l zig_url "https://ziglang.org/download/$zig_version/zig-$arch-linux-$zig_version.tar.xz"
     if curl -L "$zig_url" | tar -xJ
+        echo "Zig extracted."
     else
         set_color red; echo "Zig download failed."; set_color normal
-        prevd; sudo umount /mnt/ramdisk; return 1
+        popd; sudo umount /mnt/ramdisk; return 1
     end
 
     set_color purple; echo "Fetching Ghostty $ghostty_version..."; set_color normal
     set -l ghostty_url "https://release.files.ghostty.org/$ghostty_version/ghostty-$ghostty_version.tar.gz"
-    if curl -LO "$ghostty_url"
-        tar -xzf "ghostty-$ghostty_version.tar.gz"
+    if curl -L "$ghostty_url" | tar -xz
+        echo "Ghostty extracted."
     else
         set_color red; echo "Ghostty download failed."; set_color normal
-        prevd; sudo umount /mnt/ramdisk; return 1
+        popd; sudo umount /mnt/ramdisk; return 1
     end
 
-    cd "/mnt/ramdisk/ghostty-$ghostty_version/"
-    
+    cd "ghostty-$ghostty_version/"
     set_color purple; echo "Compiling Ghostty..."; set_color normal
-    mold -run /mnt/ramdisk/zig-$arch-linux-$zig_version/zig build -p $HOME/.local \
+    
+    if mold -run $build_root/zig-$arch-linux-$zig_version/zig build -p $HOME/.local \
         -Doptimize=ReleaseFast \
         -Dcpu=native \
         -fno-sys=gtk4-layer-shell \
         -j$threads
+        
+        set_color green; echo "Successfully updated to Ghostty $ghostty_version"; set_color normal
+    else
+        set_color red; echo "Build failed!"; set_color normal
+    end
 
-    prevd
+    popd
     sudo umount /mnt/ramdisk 2>/dev/null
-
-    set_color green; echo "Successfully updated to Ghostty $ghostty_version"; set_color normal
     $HOME/.local/bin/ghostty --version
 end
-
