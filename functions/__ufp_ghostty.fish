@@ -1,7 +1,7 @@
 function __ensure_deps -a os
     set -l needs_install 0
     
-    if not command -v mold >/dev/null; or not command -v pkg-config >/dev/null
+    if not command -v mold >/dev/null
         set needs_install 1
     end
 
