@@ -1,4 +1,4 @@
-**ufp -- a unified package manager for fish**
+**ufp -- a unified package manager for linux, written in fish**
 
 Installation with Fisher:  
 ```
