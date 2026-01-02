@@ -57,7 +57,7 @@ function __ufp_upgrade
     if command -v sbctl > /dev/null
         set_color purple; echo "Checking secureboot signatures"; set_color normal
         command sudo sbctl sign-all 2> /dev/null
-        command sudo sbctl sign -s /boot/vmlinuz-*-cachyos*.lto.* 2> /dev/null
+        # command sudo sbctl sign -s /boot/vmlinuz-*-cachyos*.lto.* 2> /dev/null
     end
     if command -v distrobox > /dev/null
       # distrobox-upgrade --all
