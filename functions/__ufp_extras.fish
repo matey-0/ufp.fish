@@ -8,7 +8,10 @@ function __ufp_extras
     end
 
     if command -v distrobox > /dev/null
-      # distrobox-upgrade --all
+        # distrobox-upgrade --all
+        for box in (distrobox list | awk 'NR>1 {print $3}')                                                                                                08:58:33
+            distrobox-enter -n $box -- fish -c "ufp -u"
+        end
         if command -v flatpak > /dev/null
             command sudo flatpak upgrade -y && flatpak upgrade -y
         end
