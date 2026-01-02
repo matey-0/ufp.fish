@@ -35,8 +35,12 @@ function ufp
             __ufp_ghostty
         case "-c"
             __ufp_clean
-        case "-u"
-            __ufp_upgrade
+        case "-u"
+            if contains -- "ufp" $args
+                fisher update matey-0/ufp.fish
+            else
+                __ufp_upgrade
+            end
         case "-b" 
             __ufp_rollback
         case "-h" "--help" ""
