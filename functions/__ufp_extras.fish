@@ -9,7 +9,8 @@ function __ufp_extras
 
     if command -v distrobox > /dev/null
         # distrobox-upgrade --all
-        for box in (distrobox list | awk 'NR>1 {print $3}')                                                                                                08:58:33
+        for box in (distrobox list | awk 'NR>1 {print $3}')
+            set_color purple; echo "Upgrading $box"; set_color normal
             distrobox-enter -n $box -- fish -c "ufp -u"
         end
         if command -v flatpak > /dev/null
