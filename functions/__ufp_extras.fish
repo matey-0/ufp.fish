@@ -1,9 +1,9 @@
+function __is_container
+    test -f /run/.containerenv; or test -f /.dockerenv
+end
+
 function __ufp_extras
     set main_upgrade_status $status
-
-    function __is_container
-        test -f /run/.containerenv; or test -f /.dockerenv
-    end
 
     if not __is_container
         if command -v sbctl >/dev/null
@@ -17,9 +17,7 @@ function __ufp_extras
                 distrobox-enter -n $box -- fish -c "ufp -u"
             end; set_color purple; echo "Finished upgrading all distroboxes found"; set_color normal
         end
-    end
 
-    if not __is_container
         if command -v flatpak >/dev/null
             set_color purple; echo "Upgrading system flatpaks"; set_color normal
             command sudo flatpak upgrade -y
