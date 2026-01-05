@@ -14,10 +14,7 @@ function __ufp_extras
         if command -v distrobox >/dev/null
             for box in (distrobox list | awk 'NR>1 {print $3}')
                 set_color purple; echo "Upgrading $box distrobox"; set_color normal
-                
-                # This adds 4 spaces to the start of every line
                 distrobox-enter -n $box -- fish -c "ufp -u" | sed 's/^/    /'
-                
             end
             set_color purple; echo "Finished upgrading all distroboxes found"; set_color normal
         end
