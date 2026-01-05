@@ -24,7 +24,7 @@ function __ufp_extras
             command sudo hblock -S ~/.config/hblock/deny.list
         end
         if functions -q fisher 
-            set_color purple; echo "Updating fisher plug-ins"; set_color normal
+            set_color purple; echo "Updating fisher plugins"; set_color normal
             fisher update
         end
     end
