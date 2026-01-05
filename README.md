@@ -26,4 +26,13 @@ Unified Fish Packager - Simple front end to popular package managers, written in
 Supports: Fedora, Arch, CachyOS, Debian, Kali, Ubuntu, Gentoo, SUSE, Alpine, & MacOS
 ```
 
-I use Fedora & Arch personally, so those are the only ones properly tested (I have done a bit of testing with each in a Distrobox [sans mac], but that's about it). 
+## Compatibility
+
+| **System**          | **Backend** | **Status**       |
+| ------------------- | ----------- | ---------------- |
+| **Fedora**          | `dnf`       | Fully Tested     |
+| **Arch / Cachy**    | `pacman`    | Fully Tested     |
+| **Debian / Ubuntu** | `apt`       | Distrobox Tested |
+| **openSUSE**        | `zypper`    | Distrobox Tested |
+| **Alpine**          | `apk`       | Distrobox Tested |
+| **macOS**           | `brew`      | Experimental     |
