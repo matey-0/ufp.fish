@@ -7,6 +7,10 @@ function __ufp_extras
             command sudo sbctl sign-all 2>/dev/null
         end
 
+    function __is_container
+        test -f /run/.containerenv; or test -f /.dockerenv
+    end
+
         if command -v distrobox >/dev/null
             for box in (distrobox list | awk 'NR>1 {print $3}')
                 set_color purple; echo "Upgrading $box distrobox"; set_color normal
