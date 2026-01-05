@@ -1,15 +1,15 @@
 function __ufp_extras
     set main_upgrade_status $status
 
+    function __is_container
+        test -f /run/.containerenv; or test -f /.dockerenv
+    end
+
     if not __is_container
         if command -v sbctl >/dev/null
             set_color purple; echo "Checking secureboot signatures"; set_color normal
             command sudo sbctl sign-all 2>/dev/null
         end
-
-    function __is_container
-        test -f /run/.containerenv; or test -f /.dockerenv
-    end
 
         if command -v distrobox >/dev/null
             for box in (distrobox list | awk 'NR>1 {print $3}')
