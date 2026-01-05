@@ -14,14 +14,18 @@ function __ufp_extras
             distrobox-enter -n $box -- fish -c "ufp -u"
         end && set_color purple; echo "Finished upgrading all distroboxes found"; set_color normal
         if command -v flatpak > /dev/null
-            command sudo flatpak upgrade -y && flatpak upgrade -y
+            set_color purple; echo "Upgrading system flatpaks"; set_color normal
+            command sudo flatpak upgrade -y
+            set_color purple; echo "Upgrading user flatpaks"; set_color normal
+            flatpak upgrade -y
         end
         if command -v hblock > /dev/null
+            set_color purple; echo "Upgrading hBlock filterlists"; set_color normal
             command sudo hblock -S ~/.config/hblock/deny.list
         end
         if functions -q fisher 
+            set_color purple; echo "Updating fisher plug-ins"; set_color normal
             fisher update
         end
     end
-
 end
