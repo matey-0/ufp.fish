@@ -11,13 +11,12 @@ function __ufp_extras
             command sudo sbctl sign-all 2>/dev/null
         end
 
-        if command -v distrobox >/dev/null
+         if command -v distrobox >/dev/null
             for box in (distrobox list | awk 'NR>1 {print $3}')
                 set_color purple; echo "Upgrading $box distrobox"; set_color normal
-                distrobox-enter -n $box -- fish -c "ufp -u" | sed 's/^/    /'
-            end
-            set_color purple; echo "Finished upgrading all distroboxes found"; set_color normal
-        end
+                distrobox-enter -n $box -- fish -c "ufp -u"
+            end; set_color purple; echo "Finished upgrading all distroboxes found"; set_color normal
+        end 
 
         if command -v flatpak >/dev/null
             set_color purple; echo "Upgrading system flatpaks"; set_color normal
