@@ -33,7 +33,6 @@ function __ufp_upgrade
         case fedora
             set_color purple; echo "Cleaning up & purging DNF cache"; set_color normal
             command sudo dnf clean all
-            command sudo dnf clean dbcache
             set_color purple; echo "Upgrading native packages"; set_color normal
             command sudo dnf upgrade -y --refresh
             set_color purple; echo "Autoremoving packages"; set_color normal
