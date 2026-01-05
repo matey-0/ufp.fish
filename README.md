@@ -1,5 +1,17 @@
 **ufp -- a unified package manager for linux, written in fish**
 
+
+## Compatibility
+
+| **System**          | **Backend** | **Status**       |
+| ------------------- | ----------- | ---------------- |
+| **Fedora**          | `dnf`       | Fully Tested     |
+| **Arch / Cachy**    | `pacman`    | Fully Tested     |
+| **Debian / Ubuntu** | `apt`       | Distrobox Tested |
+| **openSUSE**        | `zypper`    | Distrobox Tested |
+| **Alpine**          | `apk`       | Distrobox Tested |
+| **macOS**           | `brew`      | Experimental     |  
+
 Installation with Fisher:  
 ```
 fisher install matey-0/ufp.fish
@@ -25,14 +37,3 @@ Unified Fish Packager - Simple front end to popular package managers, written in
 
 Supports: Fedora, Arch, CachyOS, Debian, Kali, Ubuntu, Gentoo, SUSE, Alpine, & MacOS
 ```
-
-## Compatibility
-
-| **System**          | **Backend** | **Status**       |
-| ------------------- | ----------- | ---------------- |
-| **Fedora**          | `dnf`       | Fully Tested     |
-| **Arch / Cachy**    | `pacman`    | Fully Tested     |
-| **Debian / Ubuntu** | `apt`       | Distrobox Tested |
-| **openSUSE**        | `zypper`    | Distrobox Tested |
-| **Alpine**          | `apk`       | Distrobox Tested |
-| **macOS**           | `brew`      | Experimental     |
