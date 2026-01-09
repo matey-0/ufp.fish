@@ -16,6 +16,7 @@ function __ufp_help
     echo ""
     echo "  ufp -l         Upgrade Ladybird"
     echo "  ufp -g         Compile desired version of the Ghostty terminal emulator (Linux only)"
+    echo "  ufp -u ufp     Update the ufp plugin itself through Fisher"
     echo ""
     echo "Supports: Fedora, Arch, CachyOS, Debian, Kali, Ubuntu, Gentoo, SUSE, Alpine, & MacOS"
     echo "Current Operating System: "(string upper (string sub -l 1 -- $os_env))(string sub -s 2 -- $os_env)""
