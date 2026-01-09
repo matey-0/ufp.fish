@@ -33,7 +33,10 @@ Unified Fish Packager - Simple front end to popular package managers, written in
   ufp -b         Undo the last transaction in history (Only supported on Fedora)
   ufp -u         Perform a system upgrade
   ufp -m         Update firmware on fwupdmgr supported systems
+
+  ufp -l         Upgrade Ladybird
   ufp -g         Compile desired version of the Ghostty terminal emulator (Linux only)
+  ufp -u ufp     Update the ufp plugin itself through Fisher
 
 Supports: Fedora, Arch, CachyOS, Debian, Kali, Ubuntu, Gentoo, SUSE, Alpine, & MacOS
 ```
