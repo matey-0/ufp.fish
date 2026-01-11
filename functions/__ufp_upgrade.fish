@@ -16,7 +16,7 @@ function __ufp_upgrade
 
         case arch CachyOS
             set_color purple; echo "Upgrading native packages"; set_color normal
-            command sudo pacman -Syu --noconfirm
+            command sudo pacman -Syyu --noconfirm
             set -l orphans (pacman -Qdtq)
             if test -n "$orphans"
                 set_color purple; echo "Removing orphans"; set_color normal
