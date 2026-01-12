@@ -78,7 +78,6 @@ function __ufp_ghostty
     if mold -run $build_root/zig-$arch-linux-$zig_version/zig build -p $HOME/.local \
         -Doptimize=ReleaseFast \
         -Dcpu=native \
-        -Dlto=true \
         -fno-sys=gtk4-layer-shell \
         -j$threads
         
