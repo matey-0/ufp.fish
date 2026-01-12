@@ -38,11 +38,11 @@ function __ufp_ghostty
     end
 
     set -l total_mem (free -g | awk '/^Mem:/ {print $2}')
-    if test $total_mem -lt 12
+    if test $total_mem -lt 48
         set_color yellow; echo "Only $total_mem"GB" RAM detected. Reducing ramdisk to 4GB."; set_color normal
-        set ram_size 4g
+        set ram_size 8g
     else
-        set ram_size 10g
+        set ram_size 32g
     end
 
     if not test -d /mnt/ramdisk
