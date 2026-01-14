@@ -21,6 +21,7 @@ function __ufp_extras
         end 
 
         if command -v auto-cpufreq >/dev/null
+            set_color purple; echo "Upgrading auto-cpufreq"; set_color normal
             sudo bash auto-cpufreq --update
         end
 
