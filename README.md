@@ -12,6 +12,8 @@
 | **Alpine**          | `apk`       | Distrobox Tested |
 | **macOS**           | `brew`      | Experimental     |  
 
+Since this is a fish plugin, you do need to be using fish shell for this to work. You can use fisher to install this plugin.  
+
 Installation with Fisher:  
 ```
 fisher install matey-0/ufp.fish
