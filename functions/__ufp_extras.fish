@@ -18,6 +18,10 @@ function __ufp_extras
             end; set_color cyan; echo "Finished upgrading all distroboxes found"; set_color normal
         end 
 
+        if command -v auto-cpufreq >/dev/null
+            sudo bash auto-cpufreq --update
+        end
+
         if command -v flatpak >/dev/null
             set_color purple; echo "Upgrading system flatpaks"; set_color normal
             command sudo flatpak upgrade -y
