@@ -1,3 +1,5 @@
+sudo -v
+
 function __is_container
     test -f /run/.containerenv; or test -f /.dockerenv
 end
