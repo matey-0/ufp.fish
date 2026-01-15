@@ -4,7 +4,7 @@ function __get_os_info
         return 0
     end
     if test -f /etc/os-release
-        set -l os_id (grep '^ID=' /etc/os-release | string sub -s 4 | string trim -c '"')
+        set -l os_id (grep '^ID=' /etc/os-release | cut -d= -f2 | string trim -c "'\"")
         switch $os_id
             case gentoo
                 echo "gentoo"
