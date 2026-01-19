@@ -6,8 +6,9 @@
 | **System**          | **Backend** | **Status**       |
 | ------------------- | ----------- | ---------------- |
 | **Fedora**          | `dnf`       | Fully Tested     |
-| **Arch / Cachy**    | `pacman`    | Fully Tested     |
-| **Debian / Ubuntu** | `apt`       | Distrobox Tested |
+| **Arch / Cachy**    | `pacman/yay/paru`    | Fully Tested     |
+| **Debian / Ubuntu / Kali** | `apt`       | Distrobox Tested |
+| **Gentoo** | `emerge`
 | **openSUSE**        | `zypper`    | Distrobox Tested |
 | **Alpine**          | `apk`       | Distrobox Tested |
 | **macOS**           | `brew`      | Experimental     |  
