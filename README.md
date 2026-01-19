@@ -6,7 +6,7 @@
 | **System**          | **Backend** | **Status**       |
 | ------------------- | ----------- | ---------------- |
 | **Fedora**          | `dnf`       | Fully Tested     |
-| **Arch / Cachy**    | `pacman/yay/paru`    | Fully Tested     |
+| **Arch / Cachy**    | `pacman, yay/paru`    | Fully Tested     |
 | **Debian / Ubuntu / Kali** | `apt`       | Distrobox Tested |
 | **Gentoo** | `emerge` | Distrobox Tested|
 | **openSUSE**        | `zypper`    | Distrobox Tested |
