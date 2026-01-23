@@ -38,11 +38,11 @@ function __ufp_ghostty
     end
 
     set -l total_mem (free -g | awk '/^Mem:/ {print $2}')
-    if test $total_mem -lt 48
+    if test $total_mem -lt 24
         set_color yellow; echo "Only $total_mem"GB" RAM detected. Reducing ramdisk to 4GB."; set_color normal
-        set ram_size 8g
+        set ram_size 4g
     else
-        set ram_size 32g
+        set ram_size 16g
     end
 
     if not test -d /mnt/ramdisk
@@ -78,17 +78,12 @@ function __ufp_ghostty
         popd; sudo umount /mnt/ramdisk; return 1
     end
 
-    set -l ghostty_url ""
-    set -l extract_dir ""
+    set -e ghostty_url zig_url
+    set -l extract_dir
 
     if test "$ghostty_version" = "tip"
-        set ghostty_url "https://github.com/ghostty-org/ghostty/releases/download/tip/ghostty-source.tar.gz"
-        set extract_dir "ghostty-source"
-    else
-        set ghostty_url "https://release.files.ghostty.org/$ghostty_version/ghostty-$ghostty_version.tar.gz"
-        set extract_dir "ghostty-$ghostty_version"
+        set ghostty_version "source"
     end
-    # --- N
 
     cd "ghostty-$ghostty_version/"
     set_color purple; echo "Compiling Ghostty..."; set_color normal
