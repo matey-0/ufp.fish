@@ -95,9 +95,7 @@ function __ufp_ghostty
         -Dcpu=native \
         -Dgtk4-layer-shell=false \
         -j$threads
-        # Success logic here
-    end
-        
+
         set_color green; echo "Successfully updated to Ghostty $ghostty_version"; set_color normal
     else
         set_color red; echo "Build failed!"; set_color normal
