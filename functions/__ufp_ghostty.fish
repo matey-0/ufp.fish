@@ -68,6 +68,7 @@ function __ufp_ghostty
         popd; sudo umount /mnt/ramdisk; return 1
     end
 
+    set zig_version (string trim "$zig_version")
     set_color purple; echo "Fetching Zig $zig_version..."; set_color normal
     set -l zig_url "https://ziglang.org/download/$zig_version/zig-$arch-linux-$zig_version.tar.xz"
     if curl -Lf "$zig_url" | tar -xJ
