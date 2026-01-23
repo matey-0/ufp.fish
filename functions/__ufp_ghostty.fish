@@ -89,7 +89,7 @@ function __ufp_ghostty
 
     set_color purple; echo "Compiling Ghostty..."; set_color normal
 
-    if mold -run $build_root/zig-$arch-linux-$zig_version/zig -p $HOME/.local \
+    if mold -run $build_root/zig-$arch-linux-$zig_version/zig build -p $HOME/.local \
         -Doptimize=ReleaseFast \
         -Dcpu=native \
         -fno-sys=gtk4-layer-shell \ 
