@@ -78,20 +78,22 @@ function __ufp_ghostty
         popd; sudo umount /mnt/ramdisk; return 1
     end
 
-    set -e ghostty_url zig_url
-    set -l extract_dir
-
-    if test "$ghostty_version" = "tip"
-        set ghostty_version "source"
+    set -l ghostty_src_dir (find . -maxdepth 3 -name "build.zig" -printf '%h\n' | head -n 1)
+    
+    if test -n "$ghostty_src_dir"
+        cd "$ghostty_src_dir"
+    else
+        set_color red; echo "Could not find build.zig in extracted files."; set_color normal
+        popd; sudo umount /mnt/ramdisk; return 1
     end
 
-    cd "ghostty-$ghostty_version/"
     set_color purple; echo "Compiling Ghostty..."; set_color normal
-    
-    if mold -run $build_root/zig-$arch-linux-$zig_version/zig build -p $HOME/.local \
+
+    set -l zig_path "$build_root/zig-$arch-linux-$zig_version/zig"
+    if mold -run $zig_path build -p $HOME/.local \
         -Doptimize=ReleaseFast \
         -Dcpu=native \
-        -fno-sys=gtk4-layer-shell \
+        -Dgtk4-layer-shell=false \
         -j$threads
         
         set_color green; echo "Successfully updated to Ghostty $ghostty_version"; set_color normal
