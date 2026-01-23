@@ -61,7 +61,7 @@ function __ufp_ghostty
     else
         set -l ghostty_url "https://release.files.ghostty.org/$ghostty_version/ghostty-$ghostty_version.tar.gz"
     end
-    if curl -Lf "$ghostty_url" | tar -xz
+    if curl -L "$ghostty_url" | tar -xz
         echo "Ghostty extracted."
     else
         set_color red; echo "Ghostty download failed."; set_color normal
@@ -71,7 +71,7 @@ function __ufp_ghostty
     set zig_version (string trim "$zig_version")
     set_color purple; echo "Fetching Zig $zig_version..."; set_color normal
     set -l zig_url "https://ziglang.org/download/$zig_version/zig-$arch-linux-$zig_version.tar.xz"
-    if curl -Lf "$zig_url" | tar -xJ
+    if curl -L "$zig_url" | tar -xJ
         echo "Zig extracted."
     else
         set_color red; echo "Zig download failed."; set_color normal
