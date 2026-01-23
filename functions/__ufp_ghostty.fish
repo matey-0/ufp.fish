@@ -90,7 +90,7 @@ function __ufp_ghostty
     set_color purple; echo "Compiling Ghostty..."; set_color normal
 
     set -l zig_path "$build_root/zig-$arch-linux-$zig_version/zig"
-    if mold -run $zig_path build -p $HOME/.local \
+    if mold -run $zig_path build -p $HOME/.local\
         -Doptimize=ReleaseFast \
         -Dcpu=native \
         -fno-sys=gtk4-layer-shell \ 
