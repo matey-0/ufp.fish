@@ -93,7 +93,7 @@ function __ufp_ghostty
     if mold -run $zig_path build -p $HOME/.local \
         -Doptimize=ReleaseFast \
         -Dcpu=native \
-        -Dgtk4-layer-shell=false \
+        -fno-sys=gtk4-layer-shell \ 
         -j$threads
         
         set_color green; echo "Successfully updated to Ghostty $ghostty_version"; set_color normal
