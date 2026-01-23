@@ -64,13 +64,29 @@ function __ufp_ghostty
     end
 
     set_color purple; echo "Fetching Ghostty $ghostty_version..."; set_color normal
-    set -l ghostty_url "https://release.files.ghostty.org/$ghostty_version/ghostty-$ghostty_version.tar.gz"
+    if "$ghostty_version" = "tip"
+        set -l ghostty_url "https://github.com/ghostty-org/ghostty/releases/download/tip/ghostty-source.tar.gz"
+    else
+        set -l ghostty_url "https://release.files.ghostty.org/$ghostty_version/ghostty-$ghostty_version.tar.gz"
+    end
     if curl -L "$ghostty_url" | tar -xz
         echo "Ghostty extracted."
     else
         set_color red; echo "Ghostty download failed."; set_color normal
         popd; sudo umount /mnt/ramdisk; return 1
     end
+
+    set -l ghostty_url ""
+    set -l extract_dir ""
+
+    if test "$ghostty_version" = "tip"
+        set ghostty_url "https://github.com/ghostty-org/ghostty/releases/download/tip/ghostty-source.tar.gz"
+        set extract_dir "ghostty-source"
+    else
+        set ghostty_url "https://release.files.ghostty.org/$ghostty_version/ghostty-$ghostty_version.tar.gz"
+        set extract_dir "ghostty-$ghostty_version"
+    end
+    # --- N
 
     cd "ghostty-$ghostty_version/"
     set_color purple; echo "Compiling Ghostty..."; set_color normal
