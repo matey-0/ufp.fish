@@ -89,11 +89,14 @@ function __ufp_ghostty
 
     set_color purple; echo "Compiling Ghostty..."; set_color normal
 
-    if mold -run $build_root/zig-$arch-linux-$zig_version/zig build -p $HOME/.local \
+    if mold -run $build_root/zig-$arch-linux-$zig_version/zig build \
+        -p $HOME/.local \
         -Doptimize=ReleaseFast \
         -Dcpu=native \
-        -fno-sys=gtk4-layer-shell \ 
+        -Dgtk4-layer-shell=false \
         -j$threads
+        # Success logic here
+    end
         
         set_color green; echo "Successfully updated to Ghostty $ghostty_version"; set_color normal
     else
