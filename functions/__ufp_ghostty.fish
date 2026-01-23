@@ -93,7 +93,6 @@ function __ufp_ghostty
         -p $HOME/.local \
         -Doptimize=ReleaseFast \
         -Dcpu=native \
-        -Dgtk4-layer-shell=false \
         -j$threads
 
         set_color green; echo "Successfully updated to Ghostty $ghostty_version"; set_color normal
