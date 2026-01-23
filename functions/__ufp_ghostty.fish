@@ -54,17 +54,9 @@ function __ufp_ghostty
     set -l build_root /mnt/ramdisk
     pushd $build_root
 
-    set_color purple; echo "Fetching Zig $zig_version..."; set_color normal
-    set -l zig_url "https://ziglang.org/download/$zig_version/zig-$arch-linux-$zig_version.tar.xz"
-    if curl -Lf "$zig_url" | tar -xJ
-        echo "Zig extracted."
-    else
-        set_color red; echo "Zig download failed."; set_color normal
-        popd; sudo umount /mnt/ramdisk; return 1
-    end
-
+    set ghostty_version (string trim "$ghostty_version")
     set_color purple; echo "Fetching Ghostty $ghostty_version..."; set_color normal
-    if "$ghostty_version" = "tip"
+    if test "$ghostty_version" = "tip"
         set -l ghostty_url "https://github.com/ghostty-org/ghostty/releases/download/tip/ghostty-source.tar.gz"
     else
         set -l ghostty_url "https://release.files.ghostty.org/$ghostty_version/ghostty-$ghostty_version.tar.gz"
@@ -73,6 +65,15 @@ function __ufp_ghostty
         echo "Ghostty extracted."
     else
         set_color red; echo "Ghostty download failed."; set_color normal
+        popd; sudo umount /mnt/ramdisk; return 1
+    end
+
+    set_color purple; echo "Fetching Zig $zig_version..."; set_color normal
+    set -l zig_url "https://ziglang.org/download/$zig_version/zig-$arch-linux-$zig_version.tar.xz"
+    if curl -Lf "$zig_url" | tar -xJ
+        echo "Zig extracted."
+    else
+        set_color red; echo "Zig download failed."; set_color normal
         popd; sudo umount /mnt/ramdisk; return 1
     end
 
