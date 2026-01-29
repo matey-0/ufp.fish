@@ -47,6 +47,7 @@ function __ufp_ghostty
 
     if not test -d /mnt/ramdisk
         sudo mkdir -p /mnt/ramdisk
+        sudo chown $USER:$USER /mnt/ramdisk
     end
     sudo umount /mnt/ramdisk 2>/dev/null
     sudo mount -t tmpfs -o size=$ram_size tmpfs /mnt/ramdisk
