@@ -21,7 +21,6 @@ function __ufp_ladybird
 
     set_color purple; echo "Building Ladybird with $jobs threads..."; set_color normal
 
-    # Use 'build' to keep the binary stable for the desktop app entry
     ./Meta/ladybird.py build -j $jobs
 
     if test $status -eq 0
