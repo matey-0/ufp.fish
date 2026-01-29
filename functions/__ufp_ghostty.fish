@@ -2,7 +2,7 @@ function __ufp_ghostty
     sudo -v 
     set -l os_env (__get_os_info)
     if test "$os_env" = "macos"
-        set_color red; echo "This is for Linux, use Brew on macOS"; set_color normal
+        set_color red; echo "This is for Linux, use Brew to install Ghostty on macOS (or the github release TIP dmg)"; set_color normal
         return 1
     end
 
