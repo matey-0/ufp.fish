@@ -1,6 +1,6 @@
 **ufp -- a unified package manager for Linux, written in Fish**
 
-Note: I haven't tested this on systems that aren't mine, so use this function at your own risk, especially the non-package-manager-based functions. I can't guarantee that this won't break your computer somehow (though it shouldn't).
+Note: I haven't tested this on systems that aren't mine, so use this function at your own risk, especially the non-package-manager-based functions; I can't guarantee that this won't break your computer somehow (though it shouldn't).
 
 ## Compatibility
 
