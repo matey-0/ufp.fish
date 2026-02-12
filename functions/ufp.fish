@@ -45,6 +45,8 @@ function ufp
             else
                 __ufp_upgrade
             end
+        case "-U"
+                __ufp_fullupgrade
         case "-b" 
             __ufp_rollback
         case "-h" "--help" ""
