@@ -35,12 +35,13 @@ Unified Fish Packager - Simple front end to popular package managers, written in
   ufp -c         Clean-up & auto-remove packages
   ufp -s         Search for a package
   ufp -b         Undo the last transaction in history (Only supported on Fedora)
-  ufp -u         Perform a system upgrade
   ufp -m         Update firmware on fwupdmgr supported systems
   ufp -p         Update git repos en-mass
   ufp -l         Compile and update the Ladybird browser
   ufp -g         Compile and update the Ghostty terminal
   ufp -u ufp     Update ufp itself
+  ufp -u         Perform standard system packages update
+  ufp -U         Perform a full system upgrade (updates everything; which means everything)
 
 Supports: Fedora, Arch, CachyOS, Debian, Kali, Ubuntu, Gentoo, SUSE, Alpine, & MacOS
 Current Operating System: Fedora
