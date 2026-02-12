@@ -1,4 +1,4 @@
-function update_repos
+function __ufp_repos
     if not set -q REPO_PATH
         echo "It looks like you haven't set your repository directory yet."
         read -p 'echo "Enter the full path to your repos (e.g. ~/Development/Repos): "' input_path
