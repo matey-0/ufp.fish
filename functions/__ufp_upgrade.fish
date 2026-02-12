@@ -8,7 +8,7 @@ function __ufp_upgrade
         case macos
             if test -n "$pkgs"
                 if command -v brew > /dev/null
-                    set_color purple; echo "Upgrading specific brew packages"; set_color normal
+                    set_color purple; echo "Upgrading specific brew package(s)"; set_color normal
                     command brew upgrade $pkgs
                 else
                     echo "No brew found"
@@ -16,7 +16,7 @@ function __ufp_upgrade
             else
                 command softwareupdate -i -a
                 if command -v brew > /dev/null
-                    set_color purple; echo "Upgrading native packages"; set_color normal
+                    set_color purple; echo "Upgrading native package(s)"; set_color normal
                     command brew upgrade
                     set_color purple; echo "Autoremoving packages & various caches"; set_color normal
                     command brew cleanup
@@ -27,12 +27,12 @@ function __ufp_upgrade
 
         case arch CachyOS
             if test -n "$pkgs"
-                set_color purple; echo "Upgrading specific packages"; set_color normal
+                set_color purple; echo "Upgrading specific package(s)"; set_color normal
                 command sudo pacman -S --noconfirm $pkgs
                 or command paru -S --noconfirm $pkgs
                 or command yay -S --noconfirm $pkgs
             else
-                set_color purple; echo "Upgrading native packages"; set_color normal
+                set_color purple; echo "Upgrading native package(s)"; set_color normal
                 command sudo pacman -Syyu --noconfirm
                 set -l orphans (pacman -Qdtq)
                 if test -n "$orphans"
@@ -50,42 +50,42 @@ function __ufp_upgrade
 
         case fedora
             if test -n "$pkgs"
-                set_color purple; echo "Upgrading specific packages"; set_color normal
+                set_color purple; echo "Upgrading specific package(s)"; set_color normal
                 command sudo dnf upgrade -y $pkgs
             else
                 set_color purple; echo "Cleaning up & purging DNF cache"; set_color normal
                 command sudo dnf clean all
-                set_color purple; echo "Upgrading native packages"; set_color normal
+                set_color purple; echo "Upgrading native package(s)"; set_color normal
                 command sudo dnf upgrade -y --refresh
-                set_color purple; echo "Autoremoving packages"; set_color normal
+                set_color purple; echo "Autoremoving package(s)"; set_color normal
                 command sudo dnf autoremove -y
             end
 
         case debian kali ubuntu
             if test -n "$pkgs"
-                set_color purple; echo "Upgrading specific packages"; set_color normal
+                set_color purple; echo "Upgrading specific package(s)"; set_color normal
                 command sudo apt install --only-upgrade -y $pkgs
             else
-                set_color purple; echo "Updating cache & upgrading packages"; set_color normal
+                set_color purple; echo "Updating cache & upgrading package(s)"; set_color normal
                 command sudo apt update
                 command sudo apt full-upgrade -y
-                set_color purple; echo "Autoremoving packages"; set_color normal
+                set_color purple; echo "Autoremoving package(s)"; set_color normal
                 command sudo apt autoremove -y
             end
 
         case alpine
             if test -n "$pkgs"
-                set_color purple; echo "Upgrading specific packages"; set_color normal
+                set_color purple; echo "Upgrading specific package(s)"; set_color normal
                 command sudo apk upgrade $pkgs
             else
-                set_color purple; echo "Updating cache & upgrading packages"; set_color normal
+                set_color purple; echo "Updating cache & upgrading package(s)"; set_color normal
                 command sudo apk update
                 command sudo apk upgrade
             end
 
         case gentoo
             if test -n "$pkgs"
-                set_color purple; echo "Upgrading specific packages"; set_color normal
+                set_color purple; echo "Upgrading specific package(s)"; set_color normal
                 command sudo emerge --update --oneshot $pkgs
             else
                 set_color purple; echo "Syncing repositories"; set_color normal
@@ -94,7 +94,7 @@ function __ufp_upgrade
                 command sudo emerge -vuDN --with-bdeps=y @world
                 set_color purple; echo "Handling config files"; set_color normal
                 command sudo dispatch-conf
-                set_color purple; echo "Autoremoving packages"; set_color normal
+                set_color purple; echo "Autoremoving package(s)"; set_color normal
                 command sudo emerge --depclean
                 set_color purple; echo "Cleaning up source distribution files"; set_color normal
                 command sudo eclean-dist
@@ -103,10 +103,10 @@ function __ufp_upgrade
 
         case suse
             if test -n "$pkgs"
-                set_color purple; echo "Upgrading specific packages"; set_color normal
+                set_color purple; echo "Upgrading specific package(s)"; set_color normal
                 command sudo zypper update -y $pkgs
             else
-                set_color purple; echo "Updating cache & upgrading packages"; set_color normal
+                set_color purple; echo "Updating cache & upgrading package(s)"; set_color normal
                 command sudo zypper refresh
                 command sudo zypper dup
             end
