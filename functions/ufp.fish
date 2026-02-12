@@ -26,7 +26,7 @@ function ufp
             __ufp_query $args
 
         case "-s"
-            if test (count $args) -eq 0; echo "Error; input contains no packages"; __ufp_help; return 1; end
+            if test (count $args) -eq 0; echo "Error: input contains no packages"; __ufp_help; return 1; end
             __ufp_find $args
         
         case "-m"
