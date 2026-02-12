@@ -116,10 +116,5 @@ function __ufp_upgrade
             return 1
     end
     
-    if test -z "$pkgs"
-        __ufp_extras
-        __ufp_repos
-    end
-    
     return $main_upgrade_status
 end
