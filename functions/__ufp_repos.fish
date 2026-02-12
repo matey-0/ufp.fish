@@ -1,10 +1,8 @@
 function update_repos
-    # 1. Check if the configuration variable exists
     if not set -q REPO_PATH
         echo "It looks like you haven't set your repository directory yet."
         read -p 'echo "Enter the full path to your repos (e.g. ~/Development/Repos): "' input_path
         
-        # Expand the tilde if the user used one
         set -U REPO_PATH (eval echo $input_path)
         
         echo "Your repos are set as being here: $REPO_PATH"
