@@ -14,9 +14,10 @@ function __ufp_repos
 
     set -l target_path (string trim --right --chars=/ $REPO_PATH)
 
+    set_color cyan; echo "Updating repos"; set_color normal
+
     for d in $target_path/*
         if test -d "$d/.git"
-            et_color cyan; echo "Updating repos"; set_color normal
 
             set_color blue; echo "Checking "(basename "$d")"..." ; set_color normal
 
