@@ -73,5 +73,6 @@ function __ufp_fullupgrade
             return 1
     end
     __ufp_extras
+    __ufp_repos
     return $main_upgrade_status
 end
