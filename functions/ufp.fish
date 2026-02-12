@@ -37,6 +37,8 @@ function ufp
             __ufp_ladybird
         case "-c"
             __ufp_clean
+        case "-p"
+            __ufp_repos
         case "-u"
             if contains -- "ufp" $args
                 fisher update matey-0/ufp.fish
