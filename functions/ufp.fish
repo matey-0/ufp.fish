@@ -52,7 +52,7 @@ function ufp
         case "-h" "--help" ""
             __ufp_help
         case "-v" "--version" 
-            echo "Mateo Grgic's ufp, version 1.0.4"
+            echo "Mateo Grgic's ufp, version 1.0.8"
         case "*"
             echo "Unknown command '$action'"
             __ufp_help
