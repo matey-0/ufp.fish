@@ -43,7 +43,7 @@ function ufp
             if contains -- "ufp" $args
                 fisher update matey-0/ufp.fish
             else
-                __ufp_upgrade
+                __ufp_upgrade $args
             end
         case "-U"
                 __ufp_fullupgrade
