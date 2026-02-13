@@ -19,7 +19,7 @@ function __ufp_repos
     for d in $target_path/*
         if test -d "$d/.git"
 
-            set_color blue; echo "Checking "(basename "$d")"..." ; set_color normal
+            set_color cyan; echo "Checking "(basename "$d")"..." ; set_color normal
 
             if not git -C "$d" diff-index --quiet HEAD --
                 set_color yellow; echo "Uncommitted changes found. Skipping pull."; set_color normal
