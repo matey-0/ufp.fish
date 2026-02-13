@@ -3,7 +3,13 @@ function __ufp_find_helper
     set -l os_env (__get_os_info)
     switch "$os_env"
         case arch CachyOS
-            command pacman -Ss $pkgs || command yay -Ss $pkgs
+            if command -v yay > /dev/null
+                command sudo pacman -Ss --noconfirm $pkgs || command yay -Ss $pkgs
+            else if command -v paru > /dev/null
+                command sudo pacman -Ss --noconfirm $pkgs || command paru -Ss $pkgs
+            else
+                command sudo pacman -Ss --noconfirm $pkgs
+            end
         case fedora
             command dnf search $pkgs
         case gentoo
