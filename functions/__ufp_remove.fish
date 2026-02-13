@@ -3,7 +3,13 @@ function __ufp_remove
     set -l os_env (__get_os_info)
     switch "$os_env"
         case arch CachyOS
-            command sudo pacman -Rs $pkgs || command yay -Rs $pkgs
+            if command -v yay > /dev/null
+                command sudo pacman -Rs --noconfirm $pkgs || command yay -Rs $pkgs
+            else if command -v paru > /dev/null
+                command sudo pacman -Rs --noconfirm $pkgs || command yay -Rs $pkgs
+            else
+                command sudo pacman -Rs --noconfirm $pkgs
+            end
         case fedora
             command sudo dnf remove $pkgs
         case gentoo
