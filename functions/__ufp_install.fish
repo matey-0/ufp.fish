@@ -6,7 +6,7 @@ function __ufp_install_helper
             if command -v yay > /dev/null
                 command sudo pacman -S --noconfirm $pkgs || command yay -S $pkgs
             else if command -v paru > /dev/null
-                command sudo pacman -S --noconfirm $pkgs || command yay -S $pkgs
+                command sudo pacman -S --noconfirm $pkgs || command paru -S $pkgs
             else
                 command sudo pacman -S --noconfirm $pkgs
             end
