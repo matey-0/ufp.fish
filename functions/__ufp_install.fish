@@ -3,7 +3,12 @@ function __ufp_install_helper
     set -l os_env (__get_os_info)
     switch "$os_env"
         case arch CachyOS
-            command sudo pacman -S --noconfirm $pkgs || command yay -S $pkgs
+            if command -v yay > /dev/null
+                command sudo pacman -S --noconfirm $pkgs || command yay -S $pkgs
+            else if command -v paru > /dev/null
+                command sudo pacman -S --noconfirm $pkgs || command yay -S $pkgs
+            else
+                command sudo pacman -S --noconfirm $pkgs
         case fedora
             command sudo dnf install -y $pkgs
         case gentoo
