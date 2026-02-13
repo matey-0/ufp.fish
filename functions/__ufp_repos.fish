@@ -33,7 +33,7 @@ function __ufp_repos
                 set_color yellow; echo "Uncommitted changes found; skipping pull."; set_color normal
             else
                 if git -C "$d" pull --ff-only > /dev/null 2>&1
-                    set_color green; echo "Updated successfully"; set_color normal
+                   set_colour normal; echo "Updated successfully"; set_color normal
                 else
                     set_color red; echo "Pull failed"; set_color normal
                 end
