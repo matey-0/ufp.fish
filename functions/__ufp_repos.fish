@@ -2,7 +2,7 @@ function __ufp_repos
     set -l default_path "$HOME/Development/Repos"
 
     if not set -q REPO_PATH; or not test -d "$REPO_PATH"
-        echo "It looks like your repository directory isn't set, or is invalid."
+        echo "It looks like your repository directory isn't set or is invalid."
         
         read -P "Enter the path to your repos [$default_path]: " input_path
 
@@ -11,7 +11,7 @@ function __ufp_repos
         end
 
         set -l expanded_path (string replace -r '^~' $HOME $input_path)
-
+        
         if test -d "$expanded_path"
             set -U REPO_PATH $expanded_path
             echo "Path set to: $REPO_PATH"
@@ -29,7 +29,7 @@ function __ufp_repos
         if test -d "$d/.git"
             set_color cyan; echo "Checking "(basename "$d")"..." ; set_color normal
 
-            if test -n "(git -C "$d" status --porcelain)"
+            if not git -C "$d" diff-index --quiet HEAD --
                 set_color yellow; echo "Uncommitted changes found; skipping pull."; set_color normal
             else
                 if git -C "$d" pull --ff-only > /dev/null 2>&1
