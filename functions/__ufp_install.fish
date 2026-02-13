@@ -9,6 +9,7 @@ function __ufp_install_helper
                 command sudo pacman -S --noconfirm $pkgs || command yay -S $pkgs
             else
                 command sudo pacman -S --noconfirm $pkgs
+            end
         case fedora
             command sudo dnf install -y $pkgs
         case gentoo
