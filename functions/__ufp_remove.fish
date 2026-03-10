@@ -6,7 +6,7 @@ function __ufp_remove
             if command -v yay > /dev/null
                 command sudo pacman -Rs --noconfirm $pkgs || command yay -Rs $pkgs
             else if command -v paru > /dev/null
-                command sudo pacman -Rs --noconfirm $pkgs || command yay -Rs $pkgs
+                command sudo pacman -Rs --noconfirm $pkgs || command paru -Rs $pkgs
             else
                 command sudo pacman -Rs --noconfirm $pkgs
             end
