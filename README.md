@@ -47,5 +47,5 @@ Unified Fish Packager - Simple front end to popular package managers, written in
   ufp -v         Display current ufp version
 
 Supports: Fedora, Arch, CachyOS, Debian, Kali, Ubuntu, Gentoo, SUSE, Alpine, & MacOS
-Current Operating System: Fedora
+Current Operating System: Arch
 ```
