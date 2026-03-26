@@ -90,6 +90,9 @@ function __ufp_ghostty
 
     set_color purple; echo "Compiling Ghostty..."; set_color normal
 
+    set -x CFLAGS "-flto=thin -mllvm -polly"
+    set -x LDFLAGS "-flto=thin -fuse-ld=mold"
+
     if mold -run $build_root/zig-$arch-linux-$zig_version/zig build \
         -p $HOME/.local \
         -Doptimize=ReleaseFast \
