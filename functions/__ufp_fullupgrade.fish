@@ -16,7 +16,6 @@ function __ufp_fullupgrade
 
         case arch CachyOS
             set_color purple; echo "Upgrading native packages"; set_color normal
-            command sudo pacman -Syyu --noconfirm
             set -l orphans (pacman -Qdtq)
             if test -n "$orphans"
                 set_color purple; echo "Removing orphans"; set_color normal
@@ -24,10 +23,12 @@ function __ufp_fullupgrade
             end
             if command -v paru > /dev/null
                 set_color purple; echo "Paru found: upgrading"; set_color normal
-                command paru -Syu --noconfirm
+                command paru -Syyu --noconfirm
             else if command -v yay > /dev/null
                 set_color purple; echo "Yay found: upgrading"; set_color normal
-                command yay -Syu --noconfirm
+                command yay -Syyu --noconfirm
+            else 
+                command sudo pacman -Syyu --noconfirm
             end
 
         case fedora
