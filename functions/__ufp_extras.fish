@@ -39,6 +39,5 @@ function __ufp_extras
             set_color purple; echo "Updating fisher plugins"; set_color normal
             fisher update
         end
-        __ufp_repos
     end
 end
