@@ -46,7 +46,7 @@ function ufp
                 __ufp_upgrade $args
             end
         case "-U"
-                sudo -v;__ufp_upgrade;__ufp_extras
+                sudo -v;__ufp_upgrade;__ufp_extras;__ufp_repos
         case "-b" 
             __ufp_rollback
         case "-h" "--help" ""
