@@ -26,9 +26,7 @@ function __ufp_extras
         end
 
         if command -v flatpak >/dev/null
-            set_color purple; echo "Upgrading system flatpaks"; set_color normal
-            command sudo flatpak upgrade -y
-            set_color purple; echo "Upgrading user flatpaks"; set_color normal
+            set_color purple; echo "Upgrading flatpaks (you may need to run sudo flatpak upgrade for system libraries)"; set_color normal
             flatpak upgrade -y
         end
 
