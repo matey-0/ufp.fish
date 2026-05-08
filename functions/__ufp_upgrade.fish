@@ -28,23 +28,26 @@ function __ufp_upgrade
         case arch CachyOS
             if test -n "$pkgs"
                 set_color purple; echo "Upgrading specific package(s)"; set_color normal
-                command sudo pacman -S --noconfirm $pkgs
-                or command paru -S --noconfirm $pkgs
-                or command yay -S --noconfirm $pkgs
+                if command -v paru > /dev/null
+                    command paru -S --noconfirm $pkgs
+                else if command -v yay > /dev/null
+                    command yay -S --noconfirm $pkgs
+                else
+                    command sudo pacman -S --noconfirm $pkgs
+                end
             else
                 set_color purple; echo "Upgrading native package(s)"; set_color normal
-                command sudo pacman -Syyu --noconfirm
                 set -l orphans (pacman -Qdtq)
                 if test -n "$orphans"
                     set_color purple; echo "Removing orphans"; set_color normal
                     command sudo pacman -Rns $orphans
                 end
                 if command -v paru > /dev/null
-                    set_color purple; echo "Paru found: upgrading"; set_color normal
-                    command paru -Syu --noconfirm
+                    command paru -Syyu --noconfirm
                 else if command -v yay > /dev/null
-                    set_color purple; echo "Yay found: upgrading"; set_color normal
-                    command yay -Syu --noconfirm
+                    command yay -Syyu --noconfirm
+                else
+                    command sudo pacman -Syyu --noconfirm
                 end
             end
 
