@@ -6,7 +6,7 @@ function __ufp_find_helper
             if command -v yay > /dev/null
                 command sudo pacman -Ss --noconfirm $pkgs || command yay -Ss $pkgs
             else if command -v paru > /dev/null
-                command sudo pacman -Ss --noconfirm $pkgs || command paru -Ss $pkgs
+                command paru -Ss $pkgs
             else
                 command sudo pacman -Ss --noconfirm $pkgs
             end
