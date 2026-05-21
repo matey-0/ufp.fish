@@ -8,33 +8,17 @@ function ufp
         case "-i"
             if test (count $args) -eq 0; echo "Error: input contains no packages"; __ufp_help; return 1; end
             __ufp_install $args
-
         case "-r"
             if test (count $args) -eq 0; echo "Error: input contains no packages"; __ufp_help; return 1; end
             __ufp_remove $args
-
-        case "-e"
-            if test (count $args) -eq 0; echo "Error: input contains no packages"; __ufp_help; return 1; end
-            __ufp_reinstall $args
-
-        case "-f"
-            if test (count $args) -eq 0; echo "Error: input contains no packages"; __ufp_help; return 1; end
-            __ufp_refresh $args
-
         case "-q"
             if test (count $args) -eq 0; echo "Error: input contains no packages"; __ufp_help; return 1; end
             __ufp_query $args
-
         case "-s"
             if test (count $args) -eq 0; echo "Error: input contains no packages"; __ufp_help; return 1; end
             __ufp_find $args
-        
         case "-m"
             __ufp_firmware
-        case "-c"
-            __ufp_clean
-        case "-p"
-            __ufp_repos
         case "-u"
             if contains -- "ufp" $args
                 fisher update matey-0/ufp.fish
@@ -48,7 +32,7 @@ function ufp
         case "-h" "--help" ""
             __ufp_help
         case "-v" "--version" 
-            echo "Mateo Grgic's ufp, version 1.0.10"
+            echo "Mateo Grgic's ufp, version 1.2.0"
         case "*"
             echo "Unknown command '$action'"
             __ufp_help
