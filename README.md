@@ -38,8 +38,6 @@ Unified Fish Packager - Simple front end to popular package managers, written in
   ufp -c         Clean-up & auto-remove packages
   ufp -m         Update firmware on fwupdmgr supported systems
   ufp -p         Update git repos en-mass
-  ufp -l         Compile and update the Ladybird browser
-  ufp -g         Compile and update the Ghostty terminal
   ufp -u         Perform standard system packages upgrade if no arg is given; update given package(s) otherwise
   ufp -U         Perform a full system upgrade (updates everything; which means everything)
 
