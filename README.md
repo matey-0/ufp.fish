@@ -26,23 +26,14 @@ It can be described somewhat simply by its help function:
 ```
 Unified Fish Packager - Simple front end to popular package managers, written in Fish
 
-  Features that take arguments:
   ufp -h         Get help: print this dialogue
   ufp -i         Install one or more packages
   ufp -r         Remove one or more packages
-  ufp -e         Reinstall one or more packages
-  ufp -f         Refresh cached packages, then install one or more packages
   ufp -q         Query to get detailed information about a given package
   ufp -s         Search for a package
-  ufp -b         Undo the last transaction in history (Only supported on Fedora)
-  ufp -c         Clean-up & auto-remove packages
   ufp -m         Update firmware on fwupdmgr supported systems
-  ufp -p         Update git repos en-mass
   ufp -u         Perform standard system packages upgrade if no arg is given; update given package(s) otherwise
   ufp -U         Perform a full system upgrade (updates everything; which means everything)
-
-  ufp -u ufp     Update ufp itself
-  ufp -v         Display current ufp version
 
 Supports: Fedora, Arch, CachyOS, Debian, Kali, Ubuntu, Gentoo, SUSE, Alpine, & MacOS
 Current Operating System: Arch
