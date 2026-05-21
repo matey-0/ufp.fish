@@ -6,24 +6,6 @@ function __ufp_ghostty
         return 1
     end
 
-    switch $os_env
-        case arch CachyOS
-            sudo pacman -Syu --needed --noconfirm gtk4 libadwaita gettext mold
-        case debian ubuntu kali
-            sudo apt update && sudo apt install -y libgtk-4-dev libadwaita-1-dev gettext libxml2-utils mold
-        case fedora
-            sudo dnf install -y gtk4-devel libadwaita-devel gettext mold
-        case gentoo
-            sudo emerge -av libadwaita gtk blueprint-compiler gettext sys-devel/mold
-        case suse
-            sudo zypper install -y gtk4-devel libadwaita-devel pkgconf ncurses-devel gettext mold
-        case alpine
-            sudo apk add gtk4.0-dev libadwaita-dev pkgconf ncurses gettext mold
-        case '*'
-            set_color red; echo "Unsupported distro"; set_color normal
-            return 1
-    end
-
     set -l threads (nproc)
     set -l arch (uname -m)
 
@@ -93,11 +75,12 @@ function __ufp_ghostty
     set -x CFLAGS "-flto=thin -mllvm -polly"
     set -x LDFLAGS "-flto=thin -fuse-ld=mold"
 
-    if mold -run $build_root/zig-$arch-linux-$zig_version/zig build \
+    if $build_root/zig-$arch-linux-$zig_version/zig build \
         -p $HOME/.local \
         -Doptimize=ReleaseFast \
         -Dcpu=native \
         -Dstrip=true \
+        -Duse-llvm-writable-linker=false \
         -j$threads
 
         set_color green; echo "Successfully updated to Ghostty $ghostty_version"; set_color normal
