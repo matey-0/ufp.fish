@@ -31,10 +31,6 @@ function ufp
         
         case "-m"
             __ufp_firmware
-        case "-g"
-            __ufp_ghostty
-        case "-l"
-            __ufp_ladybird
         case "-c"
             __ufp_clean
         case "-p"
