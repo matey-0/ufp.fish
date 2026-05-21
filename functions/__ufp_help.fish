@@ -14,8 +14,6 @@ function __ufp_help
     echo "  ufp -c         Clean-up & auto-remove packages"
     echo "  ufp -m         Update firmware on fwupdmgr supported systems"
     echo "  ufp -p         Update git repos en-mass"
-    echo "  ufp -l         Compile and update the Ladybird browser"
-    echo "  ufp -g         Compile and update the Ghostty terminal"
     echo "  ufp -u         Perform standard system packages upgrade if no arg is given; update given package(s) otherwise"
     echo "  ufp -U         Perform a full system upgrade (updates everything; which means everything)"
     echo ""
