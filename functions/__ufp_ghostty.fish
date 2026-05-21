@@ -80,7 +80,6 @@ function __ufp_ghostty
         -Doptimize=ReleaseFast \
         -Dcpu=native \
         -Dstrip=true \
-        -Duse-llvm-writable-linker=false \
         -j$threads
 
         set_color green; echo "Successfully updated to Ghostty $ghostty_version"; set_color normal
